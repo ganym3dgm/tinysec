@@ -1,0 +1,15 @@
+# Eclipse metadata
+/.classpath
+/.project
+/.settings/
+
+# Compiled classes
+/bin/
+/target/
+
+# Logs
+*.log
+
+# Local IDE files
+*.iml
+.idea/

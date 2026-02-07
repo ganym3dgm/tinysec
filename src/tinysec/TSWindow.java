@@ -25,7 +25,7 @@ public class TSWindow extends JFrame {
 		if (instance != null) {
 			return instance;
 		}
-		instance = new TSWindow("NanoSource TinySec");
+		instance = new TSWindow("TinySec v1.0");
 		return instance;
 	}
 

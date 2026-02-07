@@ -16,12 +16,13 @@ import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 import tinysec.ui.controls.NavMenuView;
+import tinysec.ui.nodes.DefaultNode;
 import tinysec.ui.views.LoginView;
 
 public class TSWindow extends JFrame {
 	private static TSWindow instance;
 
-	public static TSWindow getInstance() throws Exception {
+	public static TSWindow getInstance() {
 		if (instance != null) {
 			return instance;
 		}
@@ -35,7 +36,10 @@ public class TSWindow extends JFrame {
 			LoginView login = new LoginView();
 			login.show();
 			if (login.getDialogResult()) {
-				TSWindow.getInstance().show();
+				TSWindow window = TSWindow.getInstance();
+				DefaultNode node = window.nmView.getNavigator().getCurrentNode();
+				window.nmView.getNavigator().select(node);
+				window.show();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

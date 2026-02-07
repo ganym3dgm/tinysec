@@ -18,6 +18,7 @@ import javax.swing.JToolBar;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
 
+import tinysec.TSWindow;
 import tinysec.bl.EntryManager;
 import tinysec.entity.Account;
 import tinysec.entity.Group;
@@ -150,7 +151,7 @@ public class Navigator extends JPanel {
 			DefaultNode groupNode = this.newGroup(group);
 			this.addEntries(group, groupNode);
 		}
-
+				
 		this.navTree.ResumeUpdates();
 	}
 
@@ -182,5 +183,38 @@ public class Navigator extends JPanel {
 		this.bNewGroup.setEnabled(true);
 		this.bNewNote.setEnabled(false);
 		this.bEdit.setEnabled(false);
+	}
+
+	public void select(DefaultNode node) {
+		TSWindow instance = TSWindow.getInstance();
+		Object userObj = node.getUserObject();
+		this.rootClicked();
+		if (userObj instanceof GroupNode) {
+			this.groupClicked();
+			instance.getTa_PrincipalInfos().setText("");
+			instance.getStatus().setText("Selected Group:'" + ((GroupNode) userObj).getTitle() + "'");
+		}
+		if (userObj instanceof AccountNode) {
+			this.aOrNoteClicked();
+			AccountNode pTN = (AccountNode) userObj;
+			Account account = pTN.getAAccount();
+			if (account != null) {
+				instance.getStatus().setText("Selected Account:'" + account.getTitle() + "'");
+				instance.getTa_PrincipalInfos().setText(account.toString());
+			}
+		}
+		if (userObj instanceof NoteNode) {
+			this.aOrNoteClicked();
+			NoteNode nTN = (NoteNode) userObj;
+			Note note = nTN.getANote();
+			if (note != null) {
+				instance.getStatus().setText("Selected Note:'" + note.getTitle() + "'");
+				instance.getTa_PrincipalInfos().setText(note.toString());
+			}
+		} else if (userObj instanceof String) {
+			this.rootClicked();
+			instance.getStatus().setText("TinySec ready...");
+			instance.getTa_PrincipalInfos().setText("");
+		}
 	}
 }

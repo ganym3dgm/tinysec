@@ -5,7 +5,7 @@ import java.awt.BorderLayout;
 import javax.swing.JPanel;
 
 public class NavMenuView extends JPanel {
-	public Navigator navigator = new Navigator();
+	private Navigator navigator = new Navigator();
 
 	public NavMenuView() {
 		this.setLayout(new BorderLayout());

@@ -81,42 +81,9 @@ public class NavigatorTree extends JTree {
 			return;
 		}
 
-		try {
-			TSWindow instance = TSWindow.getInstance();
-			this.currentSelectedNode = node;
-			Object userObj = node.getUserObject();
-			Navigator nav = instance.getNavMenuView().getNavigator();
-			nav.rootClicked();
-			if (userObj instanceof GroupNode) {
-				nav.groupClicked();
-				instance.getTa_PrincipalInfos().setText("");
-				instance.getStatus().setText("Selected Group:'" + ((GroupNode) userObj).getTitle() + "'");
-			}
-			if (userObj instanceof AccountNode) {
-				nav.aOrNoteClicked();
-				AccountNode pTN = (AccountNode) userObj;
-				Account account = pTN.getAAccount();
-				if (account != null) {
-					instance.getStatus().setText("Selected Account:'" + account.getTitle() + "'");
-					instance.getTa_PrincipalInfos().setText(account.toString());
-				}
-			}
-			if (userObj instanceof NoteNode) {
-				nav.aOrNoteClicked();
-				NoteNode nTN = (NoteNode) userObj;
-				Note note = nTN.getANote();
-				if (note != null) {
-					instance.getStatus().setText("Selected Note:'" + note.getTitle() + "'");
-					instance.getTa_PrincipalInfos().setText(note.toString());
-				}
-			} else if (userObj instanceof String) {
-				nav.rootClicked();
-				instance.getStatus().setText("TinySec ready...");
-				instance.getTa_PrincipalInfos().setText("");
-			}
-		} catch (Exception ex) {
-
-		}
+		this.currentSelectedNode = node;
+		Navigator nav = TSWindow.getInstance().getNavMenuView().getNavigator();
+		nav.select(node);
 	}
 
 	private void insertSorted(DefaultNode parent, DefaultNode child) {

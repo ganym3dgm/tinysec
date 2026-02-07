@@ -14,7 +14,7 @@ public class LoginVerifier {
 			if(message.contains("bad key")){
 				throw new WrongPasswordException();
 			}
-			
+
 			throw e;
 		}
 	}

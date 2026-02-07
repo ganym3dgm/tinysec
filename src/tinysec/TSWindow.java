@@ -16,7 +16,7 @@ import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 import tinysec.ui.controls.NavMenuView;
-import tinysec.ui.nodes.DefaultNode;
+import tinysec.ui.controls.NavigatorTree;
 import tinysec.ui.views.LoginView;
 
 public class TSWindow extends JFrame {
@@ -37,8 +37,8 @@ public class TSWindow extends JFrame {
 			login.show();
 			if (login.getDialogResult()) {
 				TSWindow window = TSWindow.getInstance();
-				DefaultNode node = window.nmView.getNavigator().getCurrentNode();
-				window.nmView.getNavigator().select(node);
+				NavigatorTree tree = window.nmView.getNavigator().getNavTree();
+				tree.selectCurrentNode();
 				window.show();
 			}
 		} catch (Exception e) {

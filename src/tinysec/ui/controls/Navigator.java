@@ -16,7 +16,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
 import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.TreePath;
 
 import tinysec.TSWindow;
 import tinysec.bl.EntryManager;
@@ -122,14 +121,6 @@ public class Navigator extends JPanel {
 		this.bEdit.setEnabled(true);
 	}
 
-	public DefaultNode getCurrentNode() {
-		TreePath tp = this.navTree.getSelectionPath();
-		if (tp != null) {
-			return (DefaultNode) tp.getLastPathComponent();
-		}
-		return null;
-	}
-
 	public NavigatorTree getNavTree() {
 		return this.navTree;
 	}
@@ -142,8 +133,10 @@ public class Navigator extends JPanel {
 		this.bEdit.setEnabled(false);
 	}
 
+
+
 	private void initTree() {
-		this.navTree.SuspendUpdates();
+		this.navTree.suspendUpdates();
 		Enumeration enumeration = this.groups.elements();
 		List<Group> list = Collections.list(enumeration);
 		list.sort((a, b) -> a.getTitle().compareTo(b.getTitle()));
@@ -151,8 +144,8 @@ public class Navigator extends JPanel {
 			DefaultNode groupNode = this.newGroup(group);
 			this.addEntries(group, groupNode);
 		}
-				
-		this.navTree.ResumeUpdates();
+
+		this.navTree.resumeUpdates();
 	}
 
 	private void loadEntries() {

@@ -22,18 +22,18 @@ public class Del extends AbstractAction {
 	public void actionPerformed(ActionEvent arg0) {
 		try {
 			EntryManager instance = EntryManager.getInstance();
-			Navigator nav = TSWindow.getInstance().getNavMenuView().getNavigator();
-			DefaultNode currentNode = nav.getCurrentNode();
+			Navigator navigator = TSWindow.getInstance().getNavMenuView().getNavigator();
+			DefaultNode currentNode = navigator.getNavTree().getCurrentNode();
 			if (currentNode != null) {
 				Object userObj = currentNode.getUserObject();
 				if (userObj instanceof GroupNode) {
-					this.removeGroup(instance, nav, userObj, currentNode);
+					this.removeGroup(instance, navigator, userObj, currentNode);
 				}
 				if (userObj instanceof AccountNode) {
-					this.removeAccount(instance, nav, userObj, currentNode);
+					this.removeAccount(instance, navigator, userObj, currentNode);
 				}
 				if (userObj instanceof NoteNode) {
-					this.removeNote(instance, nav, userObj, currentNode);
+					this.removeNote(instance, navigator, userObj, currentNode);
 				}
 			}
 		} catch (Exception e) {

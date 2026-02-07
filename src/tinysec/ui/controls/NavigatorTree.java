@@ -12,11 +12,8 @@ import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreePath;
 
 import tinysec.TSWindow;
-import tinysec.entity.Account;
-import tinysec.entity.Note;
 import tinysec.ui.nodes.AccountNode;
 import tinysec.ui.nodes.DefaultNode;
-import tinysec.ui.nodes.GroupNode;
 import tinysec.ui.nodes.NoteNode;
 
 public class NavigatorTree extends JTree {
@@ -62,6 +59,14 @@ public class NavigatorTree extends JTree {
 		this.insertSorted(aTNode, noteNode);
 		this.scrollToAndSelect(noteNode);
 		return aTNode;
+	}
+
+	public DefaultNode getCurrentNode() {
+		TreePath tp = this.getSelectionPath();
+		if (tp != null) {
+			return (DefaultNode) tp.getLastPathComponent();
+		}
+		return null;
 	}
 
 	public Object getCurrentSelectedNode() {
@@ -112,7 +117,7 @@ public class NavigatorTree extends JTree {
 		Toolkit.getDefaultToolkit().beep();
 	}
 
-	public void ResumeUpdates() {
+	public void resumeUpdates() {
 		this.isSuspended = false;
 	}
 
@@ -123,7 +128,12 @@ public class NavigatorTree extends JTree {
 		this.handleSelection(node);
 	}
 
-	public void SuspendUpdates() {
+	public void selectCurrentNode() {
+		DefaultNode node = this.getCurrentNode();
+		this.scrollToAndSelect(node);
+	}
+
+	public void suspendUpdates() {
 		this.isSuspended = true;
 	}
 

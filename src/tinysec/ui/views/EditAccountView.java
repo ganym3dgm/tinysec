@@ -42,7 +42,7 @@ public class EditAccountView extends JDialog {
 	private JTextField tf_uid = null;
 
 	public EditAccountView(Account account) {
-		super(new JFrame(), true);
+		super((JFrame)null, true);
 		setResizable(false);
 		this.oldAccount = account;
 		this.parentGroup = this.oldAccount.getAsscociatedGroup();
@@ -106,7 +106,7 @@ public class EditAccountView extends JDialog {
 	private JButton getJButton2() {
 		if (this.btn_ok == null) {
 			this.btn_ok = new JButton();
-			btn_ok.setBounds(293, 5, 55, 20);
+			btn_ok.setBounds(290, 5, 55, 20);
 			this.btn_ok.setPreferredSize(new Dimension(55, 20));
 			this.btn_ok.setText("OK");
 			this.btn_ok.addActionListener(new ActionListener() {

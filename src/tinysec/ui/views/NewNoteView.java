@@ -60,6 +60,7 @@ public class NewNoteView extends JDialog {
 	private JButton getJButton1() {
 		if (this.btn_cancel == null) {
 			this.btn_cancel = new JButton();
+			this.btn_cancel.setBounds(246, 3, 75, 20);
 			this.btn_cancel.setPreferredSize(new Dimension(75, 20));
 			this.btn_cancel.setText("Cancel");
 			this.btn_cancel.addActionListener(new ActionListener() {
@@ -76,6 +77,7 @@ public class NewNoteView extends JDialog {
 	private JButton getJButton2() {
 		if (this.btn_ok == null) {
 			this.btn_ok = new JButton();
+			this.btn_ok.setBounds(183, 3, 55, 20);
 			this.btn_ok.setPreferredSize(new Dimension(55, 20));
 			this.btn_ok.setText("OK");
 			this.btn_ok.addActionListener(new ActionListener() {
@@ -125,13 +127,11 @@ public class NewNoteView extends JDialog {
 
 	private JPanel getJPanel1() {
 		if (this.jPanel1 == null) {
-			FlowLayout flowLayout8 = new FlowLayout();
 			this.jPanel1 = new JPanel();
-			this.jPanel1.setLayout(flowLayout8);
 			this.jPanel1.setPreferredSize(new Dimension(10, 30));
-			flowLayout8.setAlignment(2);
-			this.jPanel1.add(this.getJButton2(), null);
-			this.jPanel1.add(this.getJButton1(), null);
+			jPanel1.setLayout(null);
+			this.jPanel1.add(this.getJButton2());
+			this.jPanel1.add(this.getJButton1());
 		}
 		return this.jPanel1;
 	}

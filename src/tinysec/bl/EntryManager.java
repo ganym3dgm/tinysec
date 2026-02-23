@@ -9,6 +9,7 @@ import java.util.Hashtable;
 import tinysec.entity.Account;
 import tinysec.entity.Group;
 import tinysec.entity.Note;
+import tinysec.ui.views.LoginView;
 
 public class EntryManager {
 	private static EntryManager instance;
@@ -164,7 +165,7 @@ public class EntryManager {
 				try {
 					String pwd;
 					if (pName.endsWith(".tsa")) {
-						pwd = System.getProperty("pwd");
+						pwd = LoginView.getMasterPassword();
 						Account account = (Account) EntryLoader.loadAccount(entrieFile, pwd);
 						account.setAsscociatedGroup(group);
 						int to = pName.lastIndexOf(".tsa");
@@ -173,7 +174,7 @@ public class EntryManager {
 						group.addAccount(account);
 					}
 					if (pName.endsWith(".tsn")) {
-						pwd = System.getProperty("pwd");
+						pwd = LoginView.getMasterPassword();
 						Note note = (Note) EntryLoader.loadNote(entrieFile, pwd);
 						note.setAssociatedGroup(group);
 						int to = pName.lastIndexOf(".tsn");

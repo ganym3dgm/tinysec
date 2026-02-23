@@ -59,6 +59,7 @@ public class TSWindow extends JFrame {
 
 			@Override
 			public void windowClosing(WindowEvent e) {
+				LoginView.clear();	
 				TSWindow.this.dispose();
 				System.exit(0);
 			}

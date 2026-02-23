@@ -248,7 +248,7 @@ public class NewAccountView extends JDialog {
 
 	private void initialize() {
 		this.setContentPane(this.getJFrameContentPane());
-		this.setTitle("Edit");
+		this.setTitle("New Account");
 		this.setDefaultCloseOperation(2);
 		this.setBounds(23, 36, 453, 396);
 	}

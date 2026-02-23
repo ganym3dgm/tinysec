@@ -13,6 +13,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.util.Arrays;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -34,9 +35,10 @@ public class LoginView extends JDialog {
 	private final JLabel labelPassword = new JLabel("Password:");
 	private final JPanel panelRoot = new JPanel();
 	private final JPasswordField pfPW = new JPasswordField();
-
+	private static char[] masterPassword;
+	 
 	public LoginView() {
-		super(new JFrame(), true);
+		super((JFrame)null, true);
 		if (!this.repositoryExists()) {
 			this.createRepository();
 		}
@@ -63,7 +65,7 @@ public class LoginView extends JDialog {
 			uadmin.mkdir();
 			try {
 				EntryWriter.writeID(pwd);
-				System.setProperty("pwd", pwd);
+				setMasterPassword(pwd.toCharArray());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -78,7 +80,7 @@ public class LoginView extends JDialog {
 
 	private void init() {
 		this.setTitle("Login");
-		this.setSize(350, 135);
+		this.setSize(313, 106);
 		this.addWindowListener(new WindowAdapter() {
 
 			@Override
@@ -86,22 +88,7 @@ public class LoginView extends JDialog {
 				System.exit(0);
 			}
 		});
-		this.buttonOK.setText("OK");
-		this.buttonOK.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				LoginView.this.ok();
-			}
-		});
-		this.buttonCancel.setText("Cancel");
-		this.buttonCancel.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				LoginView.this.cancel();
-			}
-		});
+		pfPW.setBounds(71, 8, 217, 20);
 		this.pfPW.addKeyListener(new KeyListener() {
 
 			@Override
@@ -119,20 +106,35 @@ public class LoginView extends JDialog {
 			public void keyTyped(KeyEvent arg0) {
 			}
 		});
-		this.panelRoot.setLayout(new GridBagLayout());
-		this.panelRoot.add(this.labelPassword,
-				new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, 17, 0, new Insets(5, 10, 0, 0), 0, 0));
-		this.panelRoot.add(this.pfPW,
-				new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0, 10, 2, new Insets(5, 5, 0, 10), 0, 0));
-		this.panelRoot.add(new JLabel(),
-				new GridBagConstraints(0, 2, 2, 1, 1.0, 1.0, 10, 1, new Insets(5, 10, 5, 10), 0, 0));
-		JPanel bPanel = new JPanel();
-		bPanel.setLayout(new FlowLayout(2));
-		bPanel.add(this.buttonOK);
-		bPanel.add(this.buttonCancel);
-		this.panelRoot.add(bPanel, new GridBagConstraints(1, 3, 2, 1, 1.0, 1.0, 10, 1, new Insets(5, 10, 5, 10), 0, 0));
-		this.panelRoot.setBorder(new TitledBorder(" Login "));
+		panelRoot.setLayout(null);
+		labelPassword.setBounds(11, 11, 50, 14);
+		this.panelRoot.add(this.labelPassword);
+		this.panelRoot.add(this.pfPW);
+		JLabel label = new JLabel();
+		label.setBounds(0, 0, 0, 0);
+		this.panelRoot.add(label);
+		this.panelRoot.setBorder(null);
 		this.getContentPane().add(this.panelRoot);
+		buttonOK.setBounds(168, 34, 48, 24);
+		panelRoot.add(buttonOK);
+		this.buttonOK.setText("OK");
+		buttonCancel.setBounds(223, 34, 64, 23);
+		panelRoot.add(buttonCancel);
+		this.buttonCancel.setText("Cancel");
+		this.buttonCancel.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				LoginView.this.cancel();
+			}
+		});
+		this.buttonOK.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				LoginView.this.ok();
+			}
+		});
 	}
 
 	protected void ok() {
@@ -140,7 +142,7 @@ public class LoginView extends JDialog {
 			String password = this.pfPW.getText();
 			File idF = new File(String.valueOf(System.getProperty("user.dir")) + "\\data\\ts.id");
 			if (LoginVerifier.canLogin(idF, password)) {
-				System.setProperty("pwd", password);
+				setMasterPassword(password.toCharArray());
 				this.dialogResult = true;
 				this.dispose();
 			}
@@ -161,4 +163,19 @@ public class LoginView extends JDialog {
 		}
 		return false;
 	}
+	
+	private static void setMasterPassword(char[] password) {
+        masterPassword = password;
+    }
+
+    public static String getMasterPassword() {
+        return new String(masterPassword);
+    }
+    
+    public static void clear() {
+        if (masterPassword != null) {
+            Arrays.fill(masterPassword, '\0');
+            masterPassword = null;
+        }
+    }
 }

@@ -45,16 +45,16 @@ public class Del extends AbstractAction {
 		switch (id) {
 		case 1: {
 			return JOptionPane.showConfirmDialog(new JFrame(),
-					"Are you sure you want to delete the Selected Group, and all Entries inside it?",
-					"Confirm Deletion!", 0, 3);
+					"Are you sure you want to delete the selected group and all entries inside it?",
+					"Confirm", 0, 3);
 		}
 		case 2: {
-			return JOptionPane.showConfirmDialog(new JFrame(), "Are you sure you want to delete the Selected Account?",
-					"Confirm Deletion!", 0, 3);
+			return JOptionPane.showConfirmDialog(new JFrame(), "Are you sure you want to delete the selected account?",
+					"Confirm", 0, 3);
 		}
 		case 3: {
-			return JOptionPane.showConfirmDialog(new JFrame(), "Are you sure you want to delete the Selected Note?",
-					"Confirm Deletion!", 0, 3);
+			return JOptionPane.showConfirmDialog(new JFrame(), "Are you sure you want to delete the selected note?",
+					"Confirm", 0, 3);
 		}
 		}
 		return 0;

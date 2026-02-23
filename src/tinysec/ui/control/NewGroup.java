@@ -13,7 +13,7 @@ import tinysec.entity.Group;
 public class NewGroup extends AbstractAction {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		String text = JOptionPane.showInputDialog(new JFrame(), "Please type the Name of the new Group!");
+		String text = JOptionPane.showInputDialog(new JFrame(), "Group");
 		if (text != null) {
 			try {
 				Group group = new Group(text);

@@ -7,6 +7,7 @@ import java.io.ObjectOutputStream;
 
 import tinysec.entity.Account;
 import tinysec.entity.Note;
+import tinysec.ui.views.LoginView;
 
 public class EntryWriter {
 	public static boolean writeAccount(Account account, FileOutputStream out) throws Exception {
@@ -14,7 +15,7 @@ public class EntryWriter {
 		ObjectOutputStream objout = new ObjectOutputStream(bos);
 		objout.writeObject(account);
 		objout.close();
-		PBCrypto crypto = new PBCrypto(System.getProperty("pwd"));
+		PBCrypto crypto = new PBCrypto(LoginView.getMasterPassword());
 		byte[] buf = bos.toByteArray();
 		byte[] encObj = crypto.encrypt(buf);
 		out.write(encObj);
@@ -44,7 +45,7 @@ public class EntryWriter {
 		ObjectOutputStream objout = new ObjectOutputStream(bos);
 		objout.writeObject(note);
 		objout.close();
-		PBCrypto crypto = new PBCrypto(System.getProperty("pwd"));
+		PBCrypto crypto = new PBCrypto(LoginView.getMasterPassword());
 		byte[] buf = bos.toByteArray();
 		byte[] encObj = crypto.encrypt(buf);
 		out.write(encObj);

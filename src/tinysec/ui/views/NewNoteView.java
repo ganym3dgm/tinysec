@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 import tinysec.bl.EntryManager;
 import tinysec.entity.Group;
 import tinysec.entity.Note;
+import javax.swing.ScrollPaneConstants;
 
 public class NewNoteView extends JDialog {
 	private JButton btn_cancel = null;
@@ -37,7 +38,8 @@ public class NewNoteView extends JDialog {
 	private JTextField tf_title = null;
 
 	public NewNoteView(Group parentGroup) {
-		super(new JFrame(), true);
+		super((JFrame)null, true);
+		setResizable(false);
 		this.parentGroup = parentGroup;
 		this.initialize();
 	}
@@ -106,13 +108,13 @@ public class NewNoteView extends JDialog {
 			JLabel jLabel3 = new JLabel();
 			this.jPanel = new JPanel();
 			this.jPanel.setLayout(new FlowLayout());
-			this.jPanel.setPreferredSize(new Dimension(125, 10));
+			this.jPanel.setPreferredSize(new Dimension(72, 10));
 			jLabel3.setText("Title: ");
-			jLabel3.setPreferredSize(new Dimension(120, 20));
+			jLabel3.setPreferredSize(new Dimension(64, 20));
 			jLabel4.setText("Note:");
-			jLabel4.setPreferredSize(new Dimension(120, 20));
+			jLabel4.setPreferredSize(new Dimension(64, 20));
 			jLabel5.setText("Link:");
-			jLabel5.setPreferredSize(new Dimension(120, 20));
+			jLabel5.setPreferredSize(new Dimension(64, 20));
 			this.jPanel.add(jLabel3, null);
 			this.jPanel.add(jLabel4, null);
 			this.jPanel.add(this.getJPanel3(), null);
@@ -136,14 +138,12 @@ public class NewNoteView extends JDialog {
 
 	private JPanel getJPanel2() {
 		if (this.tf_jPanel2 == null) {
-			FlowLayout flowLayout7 = new FlowLayout();
 			this.tf_jPanel2 = new JPanel();
-			this.tf_jPanel2.setLayout(flowLayout7);
-			flowLayout7.setAlignment(0);
 			this.tf_jPanel2.setPreferredSize(new Dimension(175, 145));
-			this.tf_jPanel2.add(this.getTf_title(), null);
-			this.tf_jPanel2.add(this.getJScrollPane(), null);
-			this.tf_jPanel2.add(this.getTf_link(), null);
+			tf_jPanel2.setLayout(null);
+			this.tf_jPanel2.add(this.getTf_title());
+			this.tf_jPanel2.add(this.getJScrollPane());
+			this.tf_jPanel2.add(this.getTf_link());
 		}
 		return this.tf_jPanel2;
 	}
@@ -152,7 +152,7 @@ public class NewNoteView extends JDialog {
 		if (this.jPanel3 == null) {
 			this.jPanel3 = new JPanel();
 			this.jPanel3.setLayout(new BorderLayout());
-			this.jPanel3.setPreferredSize(new Dimension(125, 100));
+			this.jPanel3.setPreferredSize(new Dimension(64, 100));
 		}
 		return this.jPanel3;
 	}
@@ -160,10 +160,10 @@ public class NewNoteView extends JDialog {
 	private JScrollPane getJScrollPane() {
 		if (this.jScrollPane == null) {
 			this.jScrollPane = new JScrollPane();
+			jScrollPane.setBounds(5, 30, 243, 125);
 			this.jScrollPane.setPreferredSize(new Dimension(225, 125));
 			this.jScrollPane.setViewportView(this.getJTextArea());
-			this.jScrollPane.setHorizontalScrollBarPolicy(32);
-			this.jScrollPane.setVerticalScrollBarPolicy(22);
+			this.jScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 			this.jScrollPane.setViewportBorder(BorderFactory.createEtchedBorder(0));
 		}
 		return this.jScrollPane;
@@ -172,9 +172,8 @@ public class NewNoteView extends JDialog {
 	private JTextArea getJTextArea() {
 		if (this.ta_note == null) {
 			this.ta_note = new JTextArea();
-			this.ta_note.setPreferredSize(new Dimension(0, 20));
 			this.ta_note.setWrapStyleWord(true);
-			this.ta_note.setLineWrap(true);
+			this.ta_note.setLineWrap(true);		
 		}
 		return this.ta_note;
 	}
@@ -182,6 +181,7 @@ public class NewNoteView extends JDialog {
 	private JTextField getTf_link() {
 		if (this.tf_link == null) {
 			this.tf_link = new JTextField();
+			tf_link.setBounds(5, 160, 243, 20);
 			this.tf_link.setPreferredSize(new Dimension(225, 20));
 		}
 		return this.tf_link;
@@ -190,6 +190,7 @@ public class NewNoteView extends JDialog {
 	private JTextField getTf_title() {
 		if (this.tf_title == null) {
 			this.tf_title = new JTextField();
+			tf_title.setBounds(5, 5, 243, 20);
 			this.tf_title.setPreferredSize(new Dimension(225, 20));
 		}
 		return this.tf_title;
@@ -197,9 +198,9 @@ public class NewNoteView extends JDialog {
 
 	private void initialize() {
 		this.setContentPane(this.getJFrameContentPane());
-		this.setTitle("New Account Wizard");
+		this.setTitle("New Note");
 		this.setDefaultCloseOperation(2);
-		this.setBounds(23, 36, 367, 253);
+		this.setBounds(23, 36, 346, 253);
 	}
 
 	private void okClicked() {
@@ -218,8 +219,6 @@ public class NewNoteView extends JDialog {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else {
-			System.out.println("unsuffiant infos");
 		}
 	}
 }

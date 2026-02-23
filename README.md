@@ -16,8 +16,8 @@ A simple offline password manager (Java Swing)
 ## Features
 
 - Desktop GUI application (Java Swing)  
-- Stores passwords and secure notes  
-- Local encrypted storage on disk  
+- Stores accounts and notes  
+- Local encrypted storage on disk (in the /data directory next to TinySec.jar)
 - Master password protection  
 - Fully offline, no telemetry  
 - No tracking
@@ -68,16 +68,12 @@ It runs on Java 17 and all newer versions (including Java 21+).
 
 This project is released under the MIT License.  
 
-It is provided **“as is”**, without warranty of any kind. Use at your own risk.  
-
-See the LICENSE file for details.
+It is provided **“as is”**, without warranty of any kind. Use at your own risk.
 
 ---
 
 ## Donations
 
-If TinySec is useful to you and you'd like to support it:  
+Like TinySec? Consider donating:  
 
 https://www.paypal.com/donate/?hosted_button_id=5KM4X9PDQSE7J
-
-Donations are completely optional and help keep the project available.

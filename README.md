@@ -57,6 +57,13 @@ You can download the latest version from the [Releases](https://github.com/ganym
 
 ---
 
+## Java Compatibility
+
+The release is compiled for **Java 17 (LTS)** to ensure broad compatibility.
+It runs on Java 17 and all newer versions (including Java 21+).
+
+---
+
 ## License
 
 This project is released under the MIT License.  

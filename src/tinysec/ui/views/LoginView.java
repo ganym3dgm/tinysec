@@ -88,7 +88,7 @@ public class LoginView extends JDialog {
 				System.exit(0);
 			}
 		});
-		pfPW.setBounds(71, 8, 217, 20);
+		pfPW.setBounds(70, 8, 217, 20);
 		this.pfPW.addKeyListener(new KeyListener() {
 
 			@Override
@@ -118,7 +118,7 @@ public class LoginView extends JDialog {
 		buttonOK.setBounds(168, 34, 48, 24);
 		panelRoot.add(buttonOK);
 		this.buttonOK.setText("OK");
-		buttonCancel.setBounds(223, 34, 64, 23);
+		buttonCancel.setBounds(224, 34, 64, 24);
 		panelRoot.add(buttonCancel);
 		this.buttonCancel.setText("Cancel");
 		this.buttonCancel.addActionListener(new ActionListener() {

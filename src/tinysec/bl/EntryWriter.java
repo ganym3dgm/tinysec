@@ -10,6 +10,9 @@ import tinysec.entity.Note;
 import tinysec.ui.views.LoginView;
 
 public class EntryWriter {
+	
+	public static String ID_PHRASE = "One Ring to Rule them All";
+	
 	public static boolean writeAccount(Account account, FileOutputStream out) throws Exception {
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		ObjectOutputStream objout = new ObjectOutputStream(bos);
@@ -27,7 +30,7 @@ public class EntryWriter {
 	public static boolean writeID(String pwd) throws Exception {
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		ObjectOutputStream objout = new ObjectOutputStream(bos);
-		objout.writeObject(new String("One Ring to Rule them All"));
+		objout.writeObject(EntryWriter.ID_PHRASE);
 		objout.close();
 		File idF = new File(String.valueOf(System.getProperty("user.dir")) + "\\data\\ts.id");
 		FileOutputStream out = new FileOutputStream(idF);

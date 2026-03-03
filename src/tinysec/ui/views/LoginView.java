@@ -147,7 +147,7 @@ public class LoginView extends JDialog {
 				this.dispose();
 			}
 		} catch (WrongPasswordException e) {
-			JOptionPane.showMessageDialog(new JFrame(), "Wrong password try again!");
+			JOptionPane.showMessageDialog(new JFrame(), "Invalid password. Please try again.", "Login", JOptionPane.ERROR_MESSAGE);
 			this.pfPW.setText("");
 		} catch (Exception exception) {
 			JOptionPane.showMessageDialog(new JFrame(), "Repository not in expected format. Please delete entry point \"ts.id\" and try again.");

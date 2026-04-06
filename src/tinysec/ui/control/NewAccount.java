@@ -13,7 +13,6 @@ import tinysec.ui.nodes.GroupNode;
 import tinysec.ui.views.NewAccountView;
 
 public class NewAccount extends AbstractAction {
-	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		try {
 			TSWindow instance = TSWindow.getInstance();
@@ -30,6 +29,8 @@ public class NewAccount extends AbstractAction {
 					Account account = naw.getCreatedAccount();
 					nav.addAccountTN(node, account);
 				}
+				
+				nav.focus();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

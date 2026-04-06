@@ -8,13 +8,13 @@ import tinysec.TSWindow;
 import tinysec.ui.views.AboutView;
 
 public class About extends AbstractAction {
-	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		AboutView atsw = new AboutView();
+		AboutView view = new AboutView();
 		try {
 			TSWindow instance = TSWindow.getInstance();
-			atsw.setLocationRelativeTo(instance);
-			atsw.show();
+			view.setLocationRelativeTo(instance);
+			view.show();
+			instance.getNavMenuView().getNavigator().focus();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

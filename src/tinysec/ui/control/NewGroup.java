@@ -11,15 +11,18 @@ import tinysec.bl.EntryManager;
 import tinysec.entity.Group;
 
 public class NewGroup extends AbstractAction {
-	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		String text = JOptionPane.showInputDialog(new JFrame(), "Group");
 		if (text != null) {
 			try {
 				Group group = new Group(text);
+				var nav = TSWindow.getInstance().getNavMenuView().getNavigator();
 				if (EntryManager.getInstance().createGroup(group)) {
-					TSWindow.getInstance().getNavMenuView().getNavigator().newGroup(new Group(text));
+					nav.newGroup(new Group(text));
 				}
+				
+				nav.focus();
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

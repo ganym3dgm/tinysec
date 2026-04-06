@@ -30,6 +30,8 @@ public class NewNote extends AbstractAction {
 					Note note = nnw.getCreatedNote();
 					nav.addNoteTN(node, note);
 				}
+				
+				nav.focus();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -39,6 +39,7 @@ public class TSWindow extends JFrame {
 				TSWindow window = TSWindow.getInstance();
 				NavigatorTree tree = window.nmView.getNavigator().getNavTree();
 				tree.selectRootNode();
+				tree.requestFocusInWindow();
 				window.show();
 			}
 		} catch (Exception e) {

@@ -133,8 +133,6 @@ public class Navigator extends JPanel {
 		this.bEdit.setEnabled(false);
 	}
 
-
-
 	private void initTree() {
 		this.navTree.suspendUpdates();
 		Enumeration enumeration = this.groups.elements();
@@ -144,7 +142,7 @@ public class Navigator extends JPanel {
 			DefaultNode groupNode = this.newGroup(group);
 			this.addEntries(group, groupNode);
 		}
-
+		
 		this.navTree.resumeUpdates();
 	}
 
@@ -210,4 +208,9 @@ public class Navigator extends JPanel {
 			instance.getTa_PrincipalInfos().setText("");
 		}
 	}
+	
+	public void focus() {
+		this.navTree.requestFocusInWindow();
+	}
+	
 }

@@ -48,6 +48,7 @@ public class Edit extends AbstractAction {
 				AccountNode newAccounTN = new AccountNode(parentGTN, account);
 				nav.getNavTree().addAccountNode(parentGTN, newAccounTN);
 			}
+			nav.focus();			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

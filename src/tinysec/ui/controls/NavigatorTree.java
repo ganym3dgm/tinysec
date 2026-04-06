@@ -1,6 +1,8 @@
 package tinysec.ui.controls;
 
 import java.awt.Toolkit;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -31,12 +33,18 @@ public class NavigatorTree extends JTree {
 		this.popupMenu.setOpaque(true);
 		this.popupMenu.setLightWeightPopupEnabled(true);
 		this.addMouseListener(new MouseAdapter() {
-
-			@Override
 			public void mouseReleased(MouseEvent e) {
 				if (!e.isPopupTrigger()) {
 					NavigatorTree.this.verifyAndActivateView(e);
 				}
+			}
+		});
+		this.addKeyListener(new KeyAdapter() {
+			public void keyReleased(KeyEvent e) {
+				var node = NavigatorTree.this.getCurrentNode();
+				if(node != null) {
+					NavigatorTree.this.handleSelection(node);
+				}			
 			}
 		});
 	}
@@ -130,7 +138,7 @@ public class NavigatorTree extends JTree {
 
 	public void selectRootNode() {
 		DefaultNode node = this.getRootNode();
-		this.scrollToAndSelect(node);
+		this.scrollToAndSelect(node);		
 	}
 
 	public void suspendUpdates() {

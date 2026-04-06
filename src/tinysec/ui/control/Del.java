@@ -64,7 +64,7 @@ public class Del extends AbstractAction {
 		Account account = ((AccountNode) userObj).getAAccount();
 		int result = this.confirm(2);
 		if (result == 0 && instance.delAccount(account)) {
-			nav.removeNode(currentNode);		
+			nav.removeNode(currentNode);
 			try {
 				TSWindow.getInstance().getTa_PrincipalInfos().setText("");
 				TSWindow.getInstance().getStatus().setText("TinySec ready...");
@@ -79,7 +79,7 @@ public class Del extends AbstractAction {
 		Group group = ((GroupNode) userObj).getAssociatedGroup();
 		int result = this.confirm(1);
 		if (result == 0 && instance.delGroup(group)) {
-			nav.removeNode(currentNode);			
+			nav.removeNode(currentNode);
 		}
 		nav.focus();
 	}

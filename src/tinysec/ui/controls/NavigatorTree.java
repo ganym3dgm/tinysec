@@ -138,7 +138,7 @@ public class NavigatorTree extends JTree {
 
 	public void selectRootNode() {
 		DefaultNode node = this.getRootNode();
-		this.scrollToAndSelect(node);		
+		this.scrollToAndSelect(node);
 	}
 
 	public void suspendUpdates() {

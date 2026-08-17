@@ -1,6 +1,6 @@
 # TinySec
 
-TinySec is a offline password manager that stores accounts and notes encrypted on your local disk using a master password.  
+TinySec is simple and easy to use storage system for all kind of text information e.g. passwords, encrypted on your local disk using a master password.  
 
 This tool started as a personal project and has been in daily use for a very long time. I’m making it public in case others find it useful.
 
@@ -9,14 +9,14 @@ This tool started as a personal project and has been in daily use for a very lon
 ## Screenshot
 
 ![TinySec Screenshot](images/screenshot.png)  
-A simple offline password manager (Java Swing)
+A simple and easy to use storage system for all kind of text information.
 
 ---
 
 ## Features
 
-- Desktop GUI application (Java Swing)  
-- Stores accounts and notes  
+- Desktop GUI application
+- Stores text information in form of accounts and notes  
 - Local encrypted storage on disk (in the /data directory next to TinySec.jar)
 - Master password protection  
 - Fully offline, no telemetry  
